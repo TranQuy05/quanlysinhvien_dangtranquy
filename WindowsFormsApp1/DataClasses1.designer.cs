@@ -33,6 +33,9 @@ namespace WindowsFormsApp1
     partial void Inserttbl_sinhvien(tbl_sinhvien instance);
     partial void Updatetbl_sinhvien(tbl_sinhvien instance);
     partial void Deletetbl_sinhvien(tbl_sinhvien instance);
+    partial void Inserttbl_lophoc(tbl_lophoc instance);
+    partial void Updatetbl_lophoc(tbl_lophoc instance);
+    partial void Deletetbl_lophoc(tbl_lophoc instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -70,6 +73,14 @@ namespace WindowsFormsApp1
 			get
 			{
 				return this.GetTable<tbl_sinhvien>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tbl_lophoc> tbl_lophocs
+		{
+			get
+			{
+				return this.GetTable<tbl_lophoc>();
 			}
 		}
 	}
@@ -207,6 +218,92 @@ namespace WindowsFormsApp1
 					this._malop = value;
 					this.SendPropertyChanged("malop");
 					this.OnmalopChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_lophoc")]
+	public partial class tbl_lophoc : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _malop;
+		
+		private string _tenlop;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnmalopChanging(int value);
+    partial void OnmalopChanged();
+    partial void OntenlopChanging(string value);
+    partial void OntenlopChanged();
+    #endregion
+		
+		public tbl_lophoc()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_malop", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int malop
+		{
+			get
+			{
+				return this._malop;
+			}
+			set
+			{
+				if ((this._malop != value))
+				{
+					this.OnmalopChanging(value);
+					this.SendPropertyChanging();
+					this._malop = value;
+					this.SendPropertyChanged("malop");
+					this.OnmalopChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tenlop", DbType="NVarChar(100)")]
+		public string tenlop
+		{
+			get
+			{
+				return this._tenlop;
+			}
+			set
+			{
+				if ((this._tenlop != value))
+				{
+					this.OntenlopChanging(value);
+					this.SendPropertyChanging();
+					this._tenlop = value;
+					this.SendPropertyChanged("tenlop");
+					this.OntenlopChanged();
 				}
 			}
 		}

@@ -9,4 +9,10 @@
       <Column Name="malop" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tbl_lophoc" Member="tbl_lophocs">
+    <Type Name="tbl_lophoc">
+      <Column Name="malop" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tenlop" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

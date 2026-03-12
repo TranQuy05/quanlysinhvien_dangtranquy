@@ -62,11 +62,25 @@ namespace WindowsFormsApp1
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageSinhVien = new System.Windows.Forms.TabPage();
             this.tabPageLopHoc = new System.Windows.Forms.TabPage();
+            this.txtSearchLop = new System.Windows.Forms.TextBox();
+            this.btnTimKiemLop = new System.Windows.Forms.Button();
+            this.lblMaLopLop = new System.Windows.Forms.Label();
+            this.txtMaLop = new System.Windows.Forms.TextBox();
+            this.lblTenLop = new System.Windows.Forms.Label();
+            this.txtTenLop = new System.Windows.Forms.TextBox();
+            this.btnThemLop = new System.Windows.Forms.Button();
+            this.btnSuaLop = new System.Windows.Forms.Button();
+            this.btnXoaLop = new System.Windows.Forms.Button();
+            this.btnReloadLop = new System.Windows.Forms.Button();
+            this.dgvLop = new System.Windows.Forms.DataGridView();
+            this.malopLopColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenlopLopColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tblsinhvienBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quanlysinhvienDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPageSinhVien.SuspendLayout();
+            this.tabPageLopHoc.SuspendLayout();
             this.SuspendLayout();
             // 
             // tblsinhvienBindingSource
@@ -232,6 +246,7 @@ namespace WindowsFormsApp1
             // dataGridView1
             // 
             this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
@@ -289,6 +304,7 @@ namespace WindowsFormsApp1
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1110, 554);
             this.tabControl1.TabIndex = 17;
+            this.tabControl1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             // 
             // tabPageSinhVien
             // 
@@ -314,17 +330,146 @@ namespace WindowsFormsApp1
             this.tabPageSinhVien.Size = new System.Drawing.Size(1102, 528);
             this.tabPageSinhVien.TabIndex = 0;
             this.tabPageSinhVien.Text = "Quản lý sinh viên";
-            this.tabPageSinhVien.UseVisualStyleBackColor = true;
+            this.tabPageSinhVien.BackColor = System.Drawing.Color.WhiteSmoke;
             // 
             // tabPageLopHoc
             // 
+            this.tabPageLopHoc.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPageLopHoc.Controls.Add(this.dgvLop);
+            this.tabPageLopHoc.Controls.Add(this.btnReloadLop);
+            this.tabPageLopHoc.Controls.Add(this.btnXoaLop);
+            this.tabPageLopHoc.Controls.Add(this.btnSuaLop);
+            this.tabPageLopHoc.Controls.Add(this.btnThemLop);
+            this.tabPageLopHoc.Controls.Add(this.txtTenLop);
+            this.tabPageLopHoc.Controls.Add(this.lblTenLop);
+            this.tabPageLopHoc.Controls.Add(this.txtMaLop);
+            this.tabPageLopHoc.Controls.Add(this.lblMaLopLop);
+            this.tabPageLopHoc.Controls.Add(this.btnTimKiemLop);
+            this.tabPageLopHoc.Controls.Add(this.txtSearchLop);
             this.tabPageLopHoc.Location = new System.Drawing.Point(4, 22);
             this.tabPageLopHoc.Name = "tabPageLopHoc";
             this.tabPageLopHoc.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageLopHoc.Size = new System.Drawing.Size(1102, 403);
+            this.tabPageLopHoc.Size = new System.Drawing.Size(1102, 528);
             this.tabPageLopHoc.TabIndex = 1;
             this.tabPageLopHoc.Text = "Quản lý lớp học";
-            this.tabPageLopHoc.UseVisualStyleBackColor = true;
+            // 
+            // txtSearchLop
+            // 
+            this.txtSearchLop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSearchLop.Location = new System.Drawing.Point(398, 36);
+            this.txtSearchLop.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSearchLop.Name = "txtSearchLop";
+            this.txtSearchLop.Size = new System.Drawing.Size(297, 20);
+            this.txtSearchLop.TabIndex = 0;
+            // 
+            // btnTimKiemLop
+            // 
+            this.btnTimKiemLop.Location = new System.Drawing.Point(714, 36);
+            this.btnTimKiemLop.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTimKiemLop.Name = "btnTimKiemLop";
+            this.btnTimKiemLop.Size = new System.Drawing.Size(80, 23);
+            this.btnTimKiemLop.TabIndex = 1;
+            this.btnTimKiemLop.Text = "Tìm lớp";
+            this.btnTimKiemLop.UseVisualStyleBackColor = true;
+            this.btnTimKiemLop.Click += new System.EventHandler(this.btnTimKiemLop_Click);
+            // 
+            // lblMaLopLop
+            // 
+            this.lblMaLopLop.AutoSize = true;
+            this.lblMaLopLop.Location = new System.Drawing.Point(42, 43);
+            this.lblMaLopLop.Name = "lblMaLopLop";
+            this.lblMaLopLop.Size = new System.Drawing.Size(46, 13);
+            this.lblMaLopLop.TabIndex = 2;
+            this.lblMaLopLop.Text = "Mã lớp:";
+            // 
+            // txtMaLop
+            // 
+            this.txtMaLop.Location = new System.Drawing.Point(45, 59);
+            this.txtMaLop.Name = "txtMaLop";
+            this.txtMaLop.ReadOnly = true;
+            this.txtMaLop.Size = new System.Drawing.Size(177, 20);
+            this.txtMaLop.TabIndex = 3;
+            // 
+            // lblTenLop
+            // 
+            this.lblTenLop.AutoSize = true;
+            this.lblTenLop.Location = new System.Drawing.Point(42, 97);
+            this.lblTenLop.Name = "lblTenLop";
+            this.lblTenLop.Size = new System.Drawing.Size(47, 13);
+            this.lblTenLop.TabIndex = 4;
+            this.lblTenLop.Text = "Tên lớp:";
+            // 
+            // txtTenLop
+            // 
+            this.txtTenLop.Location = new System.Drawing.Point(45, 113);
+            this.txtTenLop.Name = "txtTenLop";
+            this.txtTenLop.Size = new System.Drawing.Size(177, 20);
+            this.txtTenLop.TabIndex = 5;
+            // 
+            // btnThemLop
+            // 
+            this.btnThemLop.Location = new System.Drawing.Point(27, 160);
+            this.btnThemLop.Name = "btnThemLop";
+            this.btnThemLop.Size = new System.Drawing.Size(75, 23);
+            this.btnThemLop.TabIndex = 6;
+            this.btnThemLop.Text = "Thêm";
+            this.btnThemLop.UseVisualStyleBackColor = true;
+            this.btnThemLop.Click += new System.EventHandler(this.btnThemLop_Click);
+            // 
+            // btnSuaLop
+            // 
+            this.btnSuaLop.Location = new System.Drawing.Point(170, 160);
+            this.btnSuaLop.Name = "btnSuaLop";
+            this.btnSuaLop.Size = new System.Drawing.Size(75, 23);
+            this.btnSuaLop.TabIndex = 7;
+            this.btnSuaLop.Text = "Sửa";
+            this.btnSuaLop.UseVisualStyleBackColor = true;
+            this.btnSuaLop.Click += new System.EventHandler(this.btnSuaLop_Click);
+            // 
+            // btnXoaLop
+            // 
+            this.btnXoaLop.Location = new System.Drawing.Point(27, 200);
+            this.btnXoaLop.Name = "btnXoaLop";
+            this.btnXoaLop.Size = new System.Drawing.Size(75, 23);
+            this.btnXoaLop.TabIndex = 8;
+            this.btnXoaLop.Text = "Xóa";
+            this.btnXoaLop.UseVisualStyleBackColor = true;
+            this.btnXoaLop.Click += new System.EventHandler(this.btnXoaLop_Click);
+            // 
+            // btnReloadLop
+            // 
+            this.btnReloadLop.Location = new System.Drawing.Point(170, 200);
+            this.btnReloadLop.Name = "btnReloadLop";
+            this.btnReloadLop.Size = new System.Drawing.Size(75, 23);
+            this.btnReloadLop.TabIndex = 9;
+            this.btnReloadLop.Text = "Làm mới";
+            this.btnReloadLop.UseVisualStyleBackColor = true;
+            this.btnReloadLop.Click += new System.EventHandler(this.btnReloadLop_Click);
+            // 
+            // dgvLop
+            // 
+            this.dgvLop.BackgroundColor = System.Drawing.Color.White;
+            this.dgvLop.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLop.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.malopLopColumn,
+            this.tenlopLopColumn});
+            this.dgvLop.Location = new System.Drawing.Point(398, 61);
+            this.dgvLop.Name = "dgvLop";
+            this.dgvLop.Size = new System.Drawing.Size(735, 380);
+            this.dgvLop.TabIndex = 10;
+            this.dgvLop.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLop_CellClick);
+            // 
+            // malopLopColumn
+            // 
+            this.malopLopColumn.DataPropertyName = "malop";
+            this.malopLopColumn.HeaderText = "Mã lớp";
+            this.malopLopColumn.Name = "malopLopColumn";
+            // 
+            // tenlopLopColumn
+            // 
+            this.tenlopLopColumn.DataPropertyName = "tenlop";
+            this.tenlopLopColumn.HeaderText = "Tên lớp";
+            this.tenlopLopColumn.Name = "tenlopLopColumn";
             // 
             // Form2
             // 
@@ -343,6 +488,8 @@ namespace WindowsFormsApp1
             this.tabControl1.ResumeLayout(false);
             this.tabPageSinhVien.ResumeLayout(false);
             this.tabPageSinhVien.PerformLayout();
+            this.tabPageLopHoc.ResumeLayout(false);
+            this.tabPageLopHoc.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -397,5 +544,18 @@ namespace WindowsFormsApp1
         private TabControl tabControl1;
         private TabPage tabPageSinhVien;
         private TabPage tabPageLopHoc;
+        private TextBox txtSearchLop;
+        private Button btnTimKiemLop;
+        private Label lblMaLopLop;
+        private TextBox txtMaLop;
+        private Label lblTenLop;
+        private TextBox txtTenLop;
+        private Button btnThemLop;
+        private Button btnSuaLop;
+        private Button btnXoaLop;
+        private Button btnReloadLop;
+        private DataGridView dgvLop;
+        private DataGridViewTextBoxColumn malopLopColumn;
+        private DataGridViewTextBoxColumn tenlopLopColumn;
     }
 }

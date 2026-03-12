@@ -22,6 +22,7 @@ namespace WindowsFormsApp1
         private void Form2_Load(object sender, EventArgs e)
         {
             LoadData();
+            LoadLopData();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -296,6 +297,200 @@ namespace WindowsFormsApp1
         {
             ClearInputs();
             LoadData();
+            LoadLopData();
+        }
+
+        // ====== KHU VỰC QUẢN LÝ LỚP HỌC ======
+
+        private void LoadLopData()
+        {
+            string connString = @"Data Source=DESKTOP-L5410I7;Initial Catalog=quanlysinhvien;Integrated Security=True";
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"SELECT malop, tenlop FROM tbl_lophoc";
+                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        dgvLop.DataSource = dt;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi tải danh sách lớp: " + ex.Message);
+                }
+            }
+        }
+
+        private void ClearLopInputs()
+        {
+            txtMaLop.Text = string.Empty;
+            txtTenLop.Text = string.Empty;
+            txtSearchLop.Text = string.Empty;
+        }
+
+        private void dgvLop_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvLop.Rows[e.RowIndex];
+                txtMaLop.Text = row.Cells["malopLopColumn"].Value?.ToString();
+                txtTenLop.Text = row.Cells["tenlopLopColumn"].Value?.ToString();
+            }
+        }
+
+        private void btnThemLop_Click(object sender, EventArgs e)
+        {
+            string tenlop = txtTenLop.Text.Trim();
+            if (string.IsNullOrWhiteSpace(tenlop))
+            {
+                MessageBox.Show("Vui lòng nhập tên lớp.");
+                return;
+            }
+
+            string connString = @"Data Source=DESKTOP-L5410I7;Initial Catalog=quanlysinhvien;Integrated Security=True";
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    // Giả định malop là ID tự tăng, chỉ lưu tên lớp
+                    string query = @"INSERT INTO tbl_lophoc (tenlop) VALUES (@tenlop)";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@tenlop", tenlop);
+                        cmd.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("Thêm lớp học thành công.");
+                    LoadLopData();
+                    ClearLopInputs();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi thêm lớp học: " + ex.Message);
+                }
+            }
+        }
+
+        private void btnSuaLop_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtMaLop.Text))
+            {
+                MessageBox.Show("Vui lòng chọn lớp cần sửa.");
+                return;
+            }
+
+            string tenlop = txtTenLop.Text.Trim();
+            if (string.IsNullOrWhiteSpace(tenlop))
+            {
+                MessageBox.Show("Vui lòng nhập tên lớp.");
+                return;
+            }
+
+            if (!int.TryParse(txtMaLop.Text, out int malop))
+            {
+                MessageBox.Show("Mã lớp không hợp lệ.");
+                return;
+            }
+
+            string connString = @"Data Source=DESKTOP-L5410I7;Initial Catalog=quanlysinhvien;Integrated Security=True";
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"UPDATE tbl_lophoc SET tenlop = @tenlop WHERE malop = @malop";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@tenlop", tenlop);
+                        cmd.Parameters.AddWithValue("@malop", malop);
+                        cmd.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("Cập nhật lớp học thành công.");
+                    LoadLopData();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi cập nhật lớp học: " + ex.Message);
+                }
+            }
+        }
+
+        private void btnXoaLop_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtMaLop.Text))
+            {
+                MessageBox.Show("Vui lòng chọn lớp cần xóa.");
+                return;
+            }
+
+            if (!int.TryParse(txtMaLop.Text, out int malop))
+            {
+                MessageBox.Show("Mã lớp không hợp lệ.");
+                return;
+            }
+
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa lớp này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
+            {
+                return;
+            }
+
+            string connString = @"Data Source=DESKTOP-L5410I7;Initial Catalog=quanlysinhvien;Integrated Security=True";
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"DELETE FROM tbl_lophoc WHERE malop = @malop";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@malop", malop);
+                        cmd.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("Xóa lớp học thành công.");
+                    LoadLopData();
+                    ClearLopInputs();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi xóa lớp học: " + ex.Message);
+                }
+            }
+        }
+
+        private void btnReloadLop_Click(object sender, EventArgs e)
+        {
+            ClearLopInputs();
+            LoadLopData();
+        }
+
+        private void btnTimKiemLop_Click(object sender, EventArgs e)
+        {
+            string keyword = txtSearchLop.Text.Trim();
+            string connString = @"Data Source=DESKTOP-L5410I7;Initial Catalog=quanlysinhvien;Integrated Security=True";
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"SELECT malop, tenlop FROM tbl_lophoc WHERE tenlop LIKE @keyword";
+                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                    {
+                        da.SelectCommand.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        dgvLop.DataSource = dt;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi tìm kiếm lớp: " + ex.Message);
+                }
+            }
         }
     }
 }
