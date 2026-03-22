@@ -5,14 +5,16 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="tensinhvien" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="ngaysinh" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="gioitinh" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="gioitinh" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="malop" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_lophoc_tbl_sinhvien" Member="tbl_lophoc" ThisKey="malop" OtherKey="malop" Type="tbl_lophoc" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbl_lophoc" Member="tbl_lophocs">
     <Type Name="tbl_lophoc">
       <Column Name="malop" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="tenlop" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="tbl_lophoc_tbl_sinhvien" Member="tbl_sinhviens" ThisKey="malop" OtherKey="malop" Type="tbl_sinhvien" />
     </Type>
   </Table>
 </Database>

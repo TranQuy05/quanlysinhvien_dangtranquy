@@ -8,8 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Globalization;
-
 namespace WindowsFormsApp1
 {
     public partial class Form2 : Form
@@ -21,8 +19,169 @@ namespace WindowsFormsApp1
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            ApplyModernUi();
             LoadData();
             LoadLopData();
+            LoadLopCombo();
+        }
+
+        private void ApplyModernUi()
+        {
+            var bg = Color.FromArgb(237, 242, 247);
+            var surface = Color.White;
+            var textMuted = Color.FromArgb(71, 85, 105);
+            var accent = Color.FromArgb(37, 99, 235);
+            var accentHover = Color.FromArgb(29, 78, 216);
+            var danger = Color.FromArgb(220, 38, 38);
+            var dangerHover = Color.FromArgb(185, 28, 28);
+            var border = Color.FromArgb(226, 232, 240);
+
+            BackColor = bg;
+            Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Text = "Quản lý sinh viên";
+
+            tabControl1.Padding = new Point(8, 4);
+            tabPageSinhVien.BackColor = bg;
+            tabPageLopHoc.BackColor = bg;
+
+            StyleDataGridView(dataGridView1);
+            StyleDataGridView(dgvLop);
+            foreach (DataGridViewColumn col in dataGridView1.Columns)
+            {
+                if (col.DataPropertyName == "ngaysinh")
+                    col.DefaultCellStyle.Format = "dd/MM/yyyy";
+            }
+
+            foreach (Control c in GetAllControls(this))
+            {
+                if (c is Label lbl && lbl.Name != "lblTimKiem" && lbl.Name != "lblTimKiemLop")
+                {
+                    lbl.ForeColor = textMuted;
+                    if (lbl.Font.Style != FontStyle.Bold)
+                        lbl.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+                }
+                if (c is RadioButton rb)
+                {
+                    rb.ForeColor = textMuted;
+                    rb.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+                }
+                if (c is TextBox tb)
+                {
+                    tb.BorderStyle = BorderStyle.FixedSingle;
+                    tb.BackColor = surface;
+                    tb.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+                }
+                if (c is ComboBox cb)
+                {
+                    cb.FlatStyle = FlatStyle.Standard;
+                    cb.BackColor = surface;
+                }
+                if (c is DateTimePicker dtp)
+                {
+                    dtp.CalendarForeColor = textMuted;
+                }
+                if (c is GroupBox gb)
+                {
+                    gb.ForeColor = textMuted;
+                    gb.Font = new Font("Segoe UI", 9.25F, FontStyle.Bold, GraphicsUnit.Point);
+                }
+                if (c is Button btn)
+                {
+                    btn.FlatStyle = FlatStyle.Flat;
+                    btn.FlatAppearance.BorderSize = 0;
+                    btn.Cursor = Cursors.Hand;
+                    btn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+                    btn.Height = Math.Max(btn.Height, 30);
+                    btn.Padding = new Padding(10, 2, 10, 2);
+
+                    string t = btn.Text ?? "";
+                    if (t.IndexOf("Xóa", StringComparison.Ordinal) >= 0)
+                    {
+                        btn.BackColor = danger;
+                        btn.ForeColor = Color.White;
+                        btn.FlatAppearance.MouseOverBackColor = dangerHover;
+                    }
+                    else if (t.IndexOf("Làm mới", StringComparison.Ordinal) >= 0 || t.IndexOf("Tìm", StringComparison.Ordinal) >= 0)
+                    {
+                        btn.BackColor = Color.FromArgb(241, 245, 249);
+                        btn.ForeColor = textMuted;
+                        btn.FlatAppearance.BorderSize = 1;
+                        btn.FlatAppearance.BorderColor = border;
+                        btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(226, 232, 240);
+                    }
+                    else
+                    {
+                        btn.BackColor = accent;
+                        btn.ForeColor = Color.White;
+                        btn.FlatAppearance.MouseOverBackColor = accentHover;
+                    }
+                }
+            }
+
+            lblTimKiem.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTimKiem.ForeColor = Color.FromArgb(30, 41, 59);
+            lblTimKiemLop.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTimKiemLop.ForeColor = Color.FromArgb(30, 41, 59);
+        }
+
+        private static IEnumerable<Control> GetAllControls(Control root)
+        {
+            foreach (Control c in root.Controls)
+            {
+                yield return c;
+                foreach (Control child in GetAllControls(c))
+                    yield return child;
+            }
+        }
+
+        private static void StyleDataGridView(DataGridView dgv)
+        {
+            dgv.BorderStyle = BorderStyle.None;
+            dgv.BackgroundColor = Color.FromArgb(248, 250, 252);
+            dgv.GridColor = Color.FromArgb(226, 232, 240);
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dgv.RowHeadersVisible = false;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.MultiSelect = false;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.ColumnHeadersHeight = 38;
+            dgv.RowTemplate.Height = 28;
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(241, 245, 249);
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(30, 41, 59);
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(59, 130, 246);
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(30, 41, 59);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(30, 41, 59);
+        }
+
+        private void LoadLopCombo()
+        {
+            string connString = @"Data Source=DESKTOP-L5410I7;Initial Catalog=quanlysinhvien;Integrated Security=True";
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"SELECT malop, tenlop FROM tbl_lophoc ORDER BY tenlop";
+                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        cboLop.DisplayMember = "tenlop";
+                        cboLop.ValueMember = "malop";
+                        cboLop.DataSource = dt;
+                        cboLop.SelectedIndex = -1;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi tải danh sách lớp (combo): " + ex.Message);
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -69,7 +228,14 @@ namespace WindowsFormsApp1
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
                 textBox2.Text = row.Cells["tensinhvienDataGridViewTextBoxColumn"].Value?.ToString();
-                textBox3.Text = row.Cells["ngaysinhDataGridViewTextBoxColumn"].Value?.ToString();
+                object nsVal = row.Cells["ngaysinhDataGridViewTextBoxColumn"].Value;
+                if (nsVal != null && nsVal != DBNull.Value)
+                {
+                    if (nsVal is DateTime dtNs)
+                        dtpNgaySinh.Value = dtNs;
+                    else if (DateTime.TryParse(nsVal.ToString(), out DateTime parsedNs))
+                        dtpNgaySinh.Value = parsedNs;
+                }
                 var gioiTinhVal = row.Cells["gioitinhDataGridViewCheckBoxColumn"].Value;
                 bool isNam = false;
                 if (gioiTinhVal != null)
@@ -82,7 +248,22 @@ namespace WindowsFormsApp1
                 }
                 chkNam.Checked = isNam;
                 chkNu.Checked = !isNam;
-                textBox5.Text = row.Cells["malopDataGridViewTextBoxColumn"].Value?.ToString();
+                object malopVal = row.Cells["malopDataGridViewTextBoxColumn"].Value;
+                if (malopVal != null && malopVal != DBNull.Value && int.TryParse(malopVal.ToString(), out int malop))
+                {
+                    try
+                    {
+                        cboLop.SelectedValue = malop;
+                    }
+                    catch
+                    {
+                        cboLop.SelectedIndex = -1;
+                    }
+                }
+                else
+                {
+                    cboLop.SelectedIndex = -1;
+                }
             }
         }
 
@@ -111,8 +292,8 @@ namespace WindowsFormsApp1
         {
             textBox1.Text = string.Empty;
             textBox2.Text = string.Empty;
-            textBox3.Text = string.Empty;
-            textBox5.Text = string.Empty;
+            dtpNgaySinh.Value = DateTime.Today;
+            cboLop.SelectedIndex = -1;
             chkNam.Checked = true;
             chkNu.Checked = false;
         }
@@ -120,24 +301,15 @@ namespace WindowsFormsApp1
         private void btn_Them_Click(object sender, EventArgs e)
         {
             string hoten = textBox2.Text.Trim();
-            string ngaysinh = textBox3.Text.Trim();
-            string malop = textBox5.Text.Trim();
+            DateTime ngaySinhDate = dtpNgaySinh.Value.Date;
 
-            if (string.IsNullOrWhiteSpace(hoten) ||
-                string.IsNullOrWhiteSpace(ngaysinh) ||
-                string.IsNullOrWhiteSpace(malop))
+            if (string.IsNullOrWhiteSpace(hoten) || cboLop.SelectedValue == null || cboLop.SelectedIndex < 0)
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin.");
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin và chọn lớp.");
                 return;
             }
 
-            // Chuyển ngày sinh sang kiểu DateTime với định dạng dd/MM/yyyy
-            if (!DateTime.TryParseExact(ngaysinh, "dd/MM/yyyy", CultureInfo.InvariantCulture,
-                                        DateTimeStyles.None, out DateTime ngaySinhDate))
-            {
-                MessageBox.Show("Ngày sinh không hợp lệ. Vui lòng nhập theo định dạng dd/MM/yyyy (ví dụ: 25/12/2000).");
-                return;
-            }
+            int malop = Convert.ToInt32(cboLop.SelectedValue);
 
             if (!chkNam.Checked && !chkNu.Checked)
             {
@@ -191,23 +363,15 @@ namespace WindowsFormsApp1
 
             int id = Convert.ToInt32(idValue);
             string hoten = textBox2.Text.Trim();
-            string ngaysinh = textBox3.Text.Trim();
-            string malop = textBox5.Text.Trim();
+            DateTime ngaySinhDate = dtpNgaySinh.Value.Date;
 
-            if (string.IsNullOrWhiteSpace(hoten) ||
-                string.IsNullOrWhiteSpace(ngaysinh) ||
-                string.IsNullOrWhiteSpace(malop))
+            if (string.IsNullOrWhiteSpace(hoten) || cboLop.SelectedValue == null || cboLop.SelectedIndex < 0)
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin.");
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin và chọn lớp.");
                 return;
             }
 
-            if (!DateTime.TryParseExact(ngaysinh, "dd/MM/yyyy", CultureInfo.InvariantCulture,
-                                        DateTimeStyles.None, out DateTime ngaySinhDate))
-            {
-                MessageBox.Show("Ngày sinh không hợp lệ. Vui lòng nhập theo định dạng dd/MM/yyyy (ví dụ: 25/12/2000).");
-                return;
-            }
+            int malop = Convert.ToInt32(cboLop.SelectedValue);
 
             if (!chkNam.Checked && !chkNu.Checked)
             {
@@ -298,9 +462,10 @@ namespace WindowsFormsApp1
             ClearInputs();
             LoadData();
             LoadLopData();
+            LoadLopCombo();
         }
 
-        // ====== KHU VỰC QUẢN LÝ LỚP HỌC ======
+      
 
         private void LoadLopData()
         {
@@ -366,6 +531,7 @@ namespace WindowsFormsApp1
                     }
                     MessageBox.Show("Thêm lớp học thành công.");
                     LoadLopData();
+                    LoadLopCombo();
                     ClearLopInputs();
                 }
                 catch (Exception ex)
@@ -411,6 +577,7 @@ namespace WindowsFormsApp1
                     }
                     MessageBox.Show("Cập nhật lớp học thành công.");
                     LoadLopData();
+                    LoadLopCombo();
                 }
                 catch (Exception ex)
                 {
@@ -453,6 +620,7 @@ namespace WindowsFormsApp1
                     }
                     MessageBox.Show("Xóa lớp học thành công.");
                     LoadLopData();
+                    LoadLopCombo();
                     ClearLopInputs();
                 }
                 catch (Exception ex)
@@ -466,6 +634,7 @@ namespace WindowsFormsApp1
         {
             ClearLopInputs();
             LoadLopData();
+            LoadLopCombo();
         }
 
         private void btnTimKiemLop_Click(object sender, EventArgs e)

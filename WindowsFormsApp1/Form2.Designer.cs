@@ -12,10 +12,7 @@ namespace WindowsFormsApp1
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+      
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -47,12 +44,12 @@ namespace WindowsFormsApp1
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.lbl_hoten = new System.Windows.Forms.Label();
             this.lbl_ngaysinh = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.dtpNgaySinh = new System.Windows.Forms.DateTimePicker();
             this.lbl_gioitinh = new System.Windows.Forms.Label();
             this.chkNam = new System.Windows.Forms.RadioButton();
             this.chkNu = new System.Windows.Forms.RadioButton();
             this.lbl_malop = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.cboLop = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tensinhvienDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,6 +72,10 @@ namespace WindowsFormsApp1
             this.dgvLop = new System.Windows.Forms.DataGridView();
             this.malopLopColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenlopLopColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grpThongTinSV = new System.Windows.Forms.GroupBox();
+            this.lblTimKiem = new System.Windows.Forms.Label();
+            this.lblTimKiemLop = new System.Windows.Forms.Label();
+            this.grpLopHoc = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.tblsinhvienBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quanlysinhvienDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -106,18 +107,18 @@ namespace WindowsFormsApp1
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(398, 36);
+            this.textBox1.Location = new System.Drawing.Point(328, 44);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(297, 20);
+            this.textBox1.Size = new System.Drawing.Size(360, 23);
             this.textBox1.TabIndex = 2;
             // 
             // btn_timkiem
             // 
-            this.btn_timkiem.Location = new System.Drawing.Point(714, 36);
+            this.btn_timkiem.Location = new System.Drawing.Point(700, 40);
             this.btn_timkiem.Margin = new System.Windows.Forms.Padding(2);
             this.btn_timkiem.Name = "btn_timkiem";
-            this.btn_timkiem.Size = new System.Drawing.Size(56, 19);
+            this.btn_timkiem.Size = new System.Drawing.Size(100, 30);
             this.btn_timkiem.TabIndex = 3;
             this.btn_timkiem.Text = "Tìm kiếm";
             this.btn_timkiem.UseVisualStyleBackColor = true;
@@ -125,9 +126,9 @@ namespace WindowsFormsApp1
             // 
             // btn_Them
             // 
-            this.btn_Them.Location = new System.Drawing.Point(27, 343);
+            this.btn_Them.Location = new System.Drawing.Point(20, 252);
             this.btn_Them.Name = "btn_Them";
-            this.btn_Them.Size = new System.Drawing.Size(75, 23);
+            this.btn_Them.Size = new System.Drawing.Size(118, 32);
             this.btn_Them.TabIndex = 4;
             this.btn_Them.Text = "Thêm";
             this.btn_Them.UseVisualStyleBackColor = true;
@@ -135,9 +136,9 @@ namespace WindowsFormsApp1
             // 
             // btn_sua
             // 
-            this.btn_sua.Location = new System.Drawing.Point(170, 343);
+            this.btn_sua.Location = new System.Drawing.Point(148, 252);
             this.btn_sua.Name = "btn_sua";
-            this.btn_sua.Size = new System.Drawing.Size(75, 23);
+            this.btn_sua.Size = new System.Drawing.Size(118, 32);
             this.btn_sua.TabIndex = 5;
             this.btn_sua.Text = "Sửa";
             this.btn_sua.UseVisualStyleBackColor = true;
@@ -145,9 +146,9 @@ namespace WindowsFormsApp1
             // 
             // btn_xoa
             // 
-            this.btn_xoa.Location = new System.Drawing.Point(27, 392);
+            this.btn_xoa.Location = new System.Drawing.Point(20, 296);
             this.btn_xoa.Name = "btn_xoa";
-            this.btn_xoa.Size = new System.Drawing.Size(75, 23);
+            this.btn_xoa.Size = new System.Drawing.Size(118, 32);
             this.btn_xoa.TabIndex = 6;
             this.btn_xoa.Text = "Xóa";
             this.btn_xoa.UseVisualStyleBackColor = true;
@@ -155,9 +156,9 @@ namespace WindowsFormsApp1
             // 
             // btn_reload
             // 
-            this.btn_reload.Location = new System.Drawing.Point(170, 392);
+            this.btn_reload.Location = new System.Drawing.Point(148, 296);
             this.btn_reload.Name = "btn_reload";
-            this.btn_reload.Size = new System.Drawing.Size(75, 23);
+            this.btn_reload.Size = new System.Drawing.Size(118, 32);
             this.btn_reload.TabIndex = 7;
             this.btn_reload.Text = "Làm mới";
             this.btn_reload.UseVisualStyleBackColor = true;
@@ -165,15 +166,15 @@ namespace WindowsFormsApp1
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(45, 59);
+            this.textBox2.Location = new System.Drawing.Point(20, 58);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(177, 20);
+            this.textBox2.Size = new System.Drawing.Size(248, 23);
             this.textBox2.TabIndex = 8;
             // 
             // lbl_hoten
             // 
             this.lbl_hoten.AutoSize = true;
-            this.lbl_hoten.Location = new System.Drawing.Point(42, 43);
+            this.lbl_hoten.Location = new System.Drawing.Point(20, 40);
             this.lbl_hoten.Name = "lbl_hoten";
             this.lbl_hoten.Size = new System.Drawing.Size(57, 13);
             this.lbl_hoten.TabIndex = 9;
@@ -183,23 +184,25 @@ namespace WindowsFormsApp1
             // lbl_ngaysinh
             // 
             this.lbl_ngaysinh.AutoSize = true;
-            this.lbl_ngaysinh.Location = new System.Drawing.Point(42, 97);
+            this.lbl_ngaysinh.Location = new System.Drawing.Point(20, 88);
             this.lbl_ngaysinh.Name = "lbl_ngaysinh";
             this.lbl_ngaysinh.Size = new System.Drawing.Size(54, 13);
             this.lbl_ngaysinh.TabIndex = 11;
             this.lbl_ngaysinh.Text = "Ngày sinh";
             // 
-            // textBox3
+            // dtpNgaySinh
             // 
-            this.textBox3.Location = new System.Drawing.Point(45, 113);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(177, 20);
-            this.textBox3.TabIndex = 10;
+            this.dtpNgaySinh.CustomFormat = "dd/MM/yyyy";
+            this.dtpNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpNgaySinh.Location = new System.Drawing.Point(20, 104);
+            this.dtpNgaySinh.Name = "dtpNgaySinh";
+            this.dtpNgaySinh.Size = new System.Drawing.Size(248, 23);
+            this.dtpNgaySinh.TabIndex = 10;
             // 
             // lbl_gioitinh
             // 
             this.lbl_gioitinh.AutoSize = true;
-            this.lbl_gioitinh.Location = new System.Drawing.Point(42, 148);
+            this.lbl_gioitinh.Location = new System.Drawing.Point(20, 138);
             this.lbl_gioitinh.Name = "lbl_gioitinh";
             this.lbl_gioitinh.Size = new System.Drawing.Size(48, 13);
             this.lbl_gioitinh.TabIndex = 13;
@@ -208,7 +211,7 @@ namespace WindowsFormsApp1
             // chkNam
             // 
             this.chkNam.AutoSize = true;
-            this.chkNam.Location = new System.Drawing.Point(45, 167);
+            this.chkNam.Location = new System.Drawing.Point(20, 156);
             this.chkNam.Name = "chkNam";
             this.chkNam.Size = new System.Drawing.Size(48, 17);
             this.chkNam.TabIndex = 12;
@@ -219,7 +222,7 @@ namespace WindowsFormsApp1
             // chkNu
             // 
             this.chkNu.AutoSize = true;
-            this.chkNu.Location = new System.Drawing.Point(120, 167);
+            this.chkNu.Location = new System.Drawing.Point(110, 156);
             this.chkNu.Name = "chkNu";
             this.chkNu.Size = new System.Drawing.Size(39, 17);
             this.chkNu.TabIndex = 13;
@@ -230,18 +233,20 @@ namespace WindowsFormsApp1
             // lbl_malop
             // 
             this.lbl_malop.AutoSize = true;
-            this.lbl_malop.Location = new System.Drawing.Point(42, 202);
+            this.lbl_malop.Location = new System.Drawing.Point(20, 190);
             this.lbl_malop.Name = "lbl_malop";
             this.lbl_malop.Size = new System.Drawing.Size(25, 13);
             this.lbl_malop.TabIndex = 15;
             this.lbl_malop.Text = "Lớp";
             // 
-            // textBox5
+            // cboLop
             // 
-            this.textBox5.Location = new System.Drawing.Point(45, 218);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(177, 20);
-            this.textBox5.TabIndex = 14;
+            this.cboLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboLop.FormattingEnabled = true;
+            this.cboLop.Location = new System.Drawing.Point(20, 206);
+            this.cboLop.Name = "cboLop";
+            this.cboLop.Size = new System.Drawing.Size(248, 25);
+            this.cboLop.TabIndex = 14;
             // 
             // dataGridView1
             // 
@@ -255,9 +260,12 @@ namespace WindowsFormsApp1
             this.gioitinhDataGridViewCheckBoxColumn,
             this.malopDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.tblsinhvienBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(398, 61);
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.Location = new System.Drawing.Point(328, 82);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(735, 380);
+            this.dataGridView1.Size = new System.Drawing.Size(748, 420);
             this.dataGridView1.TabIndex = 16;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
             this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
@@ -265,26 +273,26 @@ namespace WindowsFormsApp1
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "ID";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // tensinhvienDataGridViewTextBoxColumn
             // 
             this.tensinhvienDataGridViewTextBoxColumn.DataPropertyName = "tensinhvien";
-            this.tensinhvienDataGridViewTextBoxColumn.HeaderText = "tensinhvien";
+            this.tensinhvienDataGridViewTextBoxColumn.HeaderText = "Họ và tên";
             this.tensinhvienDataGridViewTextBoxColumn.Name = "tensinhvienDataGridViewTextBoxColumn";
             // 
             // ngaysinhDataGridViewTextBoxColumn
             // 
             this.ngaysinhDataGridViewTextBoxColumn.DataPropertyName = "ngaysinh";
-            this.ngaysinhDataGridViewTextBoxColumn.HeaderText = "ngaysinh";
+            this.ngaysinhDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
             this.ngaysinhDataGridViewTextBoxColumn.Name = "ngaysinhDataGridViewTextBoxColumn";
             // 
             // gioitinhDataGridViewCheckBoxColumn
             // 
             this.gioitinhDataGridViewCheckBoxColumn.DataPropertyName = "gioitinh";
-            this.gioitinhDataGridViewCheckBoxColumn.HeaderText = "gioitinh";
+            this.gioitinhDataGridViewCheckBoxColumn.HeaderText = "Giới tính";
             this.gioitinhDataGridViewCheckBoxColumn.Name = "gioitinhDataGridViewCheckBoxColumn";
             this.gioitinhDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.gioitinhDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -292,8 +300,65 @@ namespace WindowsFormsApp1
             // malopDataGridViewTextBoxColumn
             // 
             this.malopDataGridViewTextBoxColumn.DataPropertyName = "malop";
-            this.malopDataGridViewTextBoxColumn.HeaderText = "malop";
+            this.malopDataGridViewTextBoxColumn.HeaderText = "Mã lớp";
             this.malopDataGridViewTextBoxColumn.Name = "malopDataGridViewTextBoxColumn";
+            // 
+            // grpThongTinSV
+            // 
+            this.grpThongTinSV.Controls.Add(this.btn_reload);
+            this.grpThongTinSV.Controls.Add(this.btn_xoa);
+            this.grpThongTinSV.Controls.Add(this.btn_sua);
+            this.grpThongTinSV.Controls.Add(this.btn_Them);
+            this.grpThongTinSV.Controls.Add(this.cboLop);
+            this.grpThongTinSV.Controls.Add(this.lbl_malop);
+            this.grpThongTinSV.Controls.Add(this.chkNu);
+            this.grpThongTinSV.Controls.Add(this.chkNam);
+            this.grpThongTinSV.Controls.Add(this.lbl_gioitinh);
+            this.grpThongTinSV.Controls.Add(this.dtpNgaySinh);
+            this.grpThongTinSV.Controls.Add(this.lbl_ngaysinh);
+            this.grpThongTinSV.Controls.Add(this.textBox2);
+            this.grpThongTinSV.Controls.Add(this.lbl_hoten);
+            this.grpThongTinSV.Location = new System.Drawing.Point(16, 16);
+            this.grpThongTinSV.Name = "grpThongTinSV";
+            this.grpThongTinSV.Size = new System.Drawing.Size(300, 360);
+            this.grpThongTinSV.TabIndex = 18;
+            this.grpThongTinSV.TabStop = false;
+            this.grpThongTinSV.Text = "Thông tin sinh viên";
+            // 
+            // lblTimKiem
+            // 
+            this.lblTimKiem.AutoSize = true;
+            this.lblTimKiem.Location = new System.Drawing.Point(328, 20);
+            this.lblTimKiem.Name = "lblTimKiem";
+            this.lblTimKiem.Size = new System.Drawing.Size(123, 15);
+            this.lblTimKiem.TabIndex = 19;
+            this.lblTimKiem.Text = "Tìm theo tên sinh viên";
+            // 
+            // grpLopHoc
+            // 
+            this.grpLopHoc.Controls.Add(this.btnReloadLop);
+            this.grpLopHoc.Controls.Add(this.btnXoaLop);
+            this.grpLopHoc.Controls.Add(this.btnSuaLop);
+            this.grpLopHoc.Controls.Add(this.btnThemLop);
+            this.grpLopHoc.Controls.Add(this.txtTenLop);
+            this.grpLopHoc.Controls.Add(this.lblTenLop);
+            this.grpLopHoc.Controls.Add(this.txtMaLop);
+            this.grpLopHoc.Controls.Add(this.lblMaLopLop);
+            this.grpLopHoc.Location = new System.Drawing.Point(16, 16);
+            this.grpLopHoc.Name = "grpLopHoc";
+            this.grpLopHoc.Size = new System.Drawing.Size(300, 244);
+            this.grpLopHoc.TabIndex = 20;
+            this.grpLopHoc.TabStop = false;
+            this.grpLopHoc.Text = "Thông tin lớp học";
+            // 
+            // lblTimKiemLop
+            // 
+            this.lblTimKiemLop.AutoSize = true;
+            this.lblTimKiemLop.Location = new System.Drawing.Point(328, 20);
+            this.lblTimKiemLop.Name = "lblTimKiemLop";
+            this.lblTimKiemLop.Size = new System.Drawing.Size(95, 15);
+            this.lblTimKiemLop.TabIndex = 21;
+            this.lblTimKiemLop.Text = "Tìm theo tên lớp";
             // 
             // tabControl1
             // 
@@ -309,65 +374,48 @@ namespace WindowsFormsApp1
             // tabPageSinhVien
             // 
             this.tabPageSinhVien.Controls.Add(this.dataGridView1);
-            this.tabPageSinhVien.Controls.Add(this.lbl_malop);
-            this.tabPageSinhVien.Controls.Add(this.textBox5);
-            this.tabPageSinhVien.Controls.Add(this.lbl_gioitinh);
-            this.tabPageSinhVien.Controls.Add(this.chkNu);
-            this.tabPageSinhVien.Controls.Add(this.chkNam);
-            this.tabPageSinhVien.Controls.Add(this.lbl_ngaysinh);
-            this.tabPageSinhVien.Controls.Add(this.textBox3);
-            this.tabPageSinhVien.Controls.Add(this.lbl_hoten);
-            this.tabPageSinhVien.Controls.Add(this.textBox2);
-            this.tabPageSinhVien.Controls.Add(this.btn_reload);
-            this.tabPageSinhVien.Controls.Add(this.btn_xoa);
-            this.tabPageSinhVien.Controls.Add(this.btn_sua);
-            this.tabPageSinhVien.Controls.Add(this.btn_Them);
             this.tabPageSinhVien.Controls.Add(this.btn_timkiem);
             this.tabPageSinhVien.Controls.Add(this.textBox1);
+            this.tabPageSinhVien.Controls.Add(this.lblTimKiem);
+            this.tabPageSinhVien.Controls.Add(this.grpThongTinSV);
             this.tabPageSinhVien.Location = new System.Drawing.Point(4, 22);
             this.tabPageSinhVien.Name = "tabPageSinhVien";
             this.tabPageSinhVien.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageSinhVien.Size = new System.Drawing.Size(1102, 528);
             this.tabPageSinhVien.TabIndex = 0;
-            this.tabPageSinhVien.Text = "Quản lý sinh viên";
-            this.tabPageSinhVien.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPageSinhVien.Text = "  Quản lý sinh viên  ";
+            this.tabPageSinhVien.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(247)))));
             // 
             // tabPageLopHoc
             // 
-            this.tabPageLopHoc.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPageLopHoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(247)))));
             this.tabPageLopHoc.Controls.Add(this.dgvLop);
-            this.tabPageLopHoc.Controls.Add(this.btnReloadLop);
-            this.tabPageLopHoc.Controls.Add(this.btnXoaLop);
-            this.tabPageLopHoc.Controls.Add(this.btnSuaLop);
-            this.tabPageLopHoc.Controls.Add(this.btnThemLop);
-            this.tabPageLopHoc.Controls.Add(this.txtTenLop);
-            this.tabPageLopHoc.Controls.Add(this.lblTenLop);
-            this.tabPageLopHoc.Controls.Add(this.txtMaLop);
-            this.tabPageLopHoc.Controls.Add(this.lblMaLopLop);
             this.tabPageLopHoc.Controls.Add(this.btnTimKiemLop);
             this.tabPageLopHoc.Controls.Add(this.txtSearchLop);
+            this.tabPageLopHoc.Controls.Add(this.lblTimKiemLop);
+            this.tabPageLopHoc.Controls.Add(this.grpLopHoc);
             this.tabPageLopHoc.Location = new System.Drawing.Point(4, 22);
             this.tabPageLopHoc.Name = "tabPageLopHoc";
             this.tabPageLopHoc.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageLopHoc.Size = new System.Drawing.Size(1102, 528);
             this.tabPageLopHoc.TabIndex = 1;
-            this.tabPageLopHoc.Text = "Quản lý lớp học";
+            this.tabPageLopHoc.Text = "  Quản lý lớp học  ";
             // 
             // txtSearchLop
             // 
             this.txtSearchLop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSearchLop.Location = new System.Drawing.Point(398, 36);
+            this.txtSearchLop.Location = new System.Drawing.Point(328, 44);
             this.txtSearchLop.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearchLop.Name = "txtSearchLop";
-            this.txtSearchLop.Size = new System.Drawing.Size(297, 20);
+            this.txtSearchLop.Size = new System.Drawing.Size(360, 23);
             this.txtSearchLop.TabIndex = 0;
             // 
             // btnTimKiemLop
             // 
-            this.btnTimKiemLop.Location = new System.Drawing.Point(714, 36);
+            this.btnTimKiemLop.Location = new System.Drawing.Point(700, 40);
             this.btnTimKiemLop.Margin = new System.Windows.Forms.Padding(2);
             this.btnTimKiemLop.Name = "btnTimKiemLop";
-            this.btnTimKiemLop.Size = new System.Drawing.Size(80, 23);
+            this.btnTimKiemLop.Size = new System.Drawing.Size(100, 30);
             this.btnTimKiemLop.TabIndex = 1;
             this.btnTimKiemLop.Text = "Tìm lớp";
             this.btnTimKiemLop.UseVisualStyleBackColor = true;
@@ -376,7 +424,7 @@ namespace WindowsFormsApp1
             // lblMaLopLop
             // 
             this.lblMaLopLop.AutoSize = true;
-            this.lblMaLopLop.Location = new System.Drawing.Point(42, 43);
+            this.lblMaLopLop.Location = new System.Drawing.Point(20, 40);
             this.lblMaLopLop.Name = "lblMaLopLop";
             this.lblMaLopLop.Size = new System.Drawing.Size(46, 13);
             this.lblMaLopLop.TabIndex = 2;
@@ -384,16 +432,16 @@ namespace WindowsFormsApp1
             // 
             // txtMaLop
             // 
-            this.txtMaLop.Location = new System.Drawing.Point(45, 59);
+            this.txtMaLop.Location = new System.Drawing.Point(20, 58);
             this.txtMaLop.Name = "txtMaLop";
             this.txtMaLop.ReadOnly = true;
-            this.txtMaLop.Size = new System.Drawing.Size(177, 20);
+            this.txtMaLop.Size = new System.Drawing.Size(248, 23);
             this.txtMaLop.TabIndex = 3;
             // 
             // lblTenLop
             // 
             this.lblTenLop.AutoSize = true;
-            this.lblTenLop.Location = new System.Drawing.Point(42, 97);
+            this.lblTenLop.Location = new System.Drawing.Point(20, 88);
             this.lblTenLop.Name = "lblTenLop";
             this.lblTenLop.Size = new System.Drawing.Size(47, 13);
             this.lblTenLop.TabIndex = 4;
@@ -401,16 +449,16 @@ namespace WindowsFormsApp1
             // 
             // txtTenLop
             // 
-            this.txtTenLop.Location = new System.Drawing.Point(45, 113);
+            this.txtTenLop.Location = new System.Drawing.Point(20, 104);
             this.txtTenLop.Name = "txtTenLop";
-            this.txtTenLop.Size = new System.Drawing.Size(177, 20);
+            this.txtTenLop.Size = new System.Drawing.Size(248, 23);
             this.txtTenLop.TabIndex = 5;
             // 
             // btnThemLop
             // 
-            this.btnThemLop.Location = new System.Drawing.Point(27, 160);
+            this.btnThemLop.Location = new System.Drawing.Point(20, 148);
             this.btnThemLop.Name = "btnThemLop";
-            this.btnThemLop.Size = new System.Drawing.Size(75, 23);
+            this.btnThemLop.Size = new System.Drawing.Size(118, 32);
             this.btnThemLop.TabIndex = 6;
             this.btnThemLop.Text = "Thêm";
             this.btnThemLop.UseVisualStyleBackColor = true;
@@ -418,9 +466,9 @@ namespace WindowsFormsApp1
             // 
             // btnSuaLop
             // 
-            this.btnSuaLop.Location = new System.Drawing.Point(170, 160);
+            this.btnSuaLop.Location = new System.Drawing.Point(148, 148);
             this.btnSuaLop.Name = "btnSuaLop";
-            this.btnSuaLop.Size = new System.Drawing.Size(75, 23);
+            this.btnSuaLop.Size = new System.Drawing.Size(118, 32);
             this.btnSuaLop.TabIndex = 7;
             this.btnSuaLop.Text = "Sửa";
             this.btnSuaLop.UseVisualStyleBackColor = true;
@@ -428,9 +476,9 @@ namespace WindowsFormsApp1
             // 
             // btnXoaLop
             // 
-            this.btnXoaLop.Location = new System.Drawing.Point(27, 200);
+            this.btnXoaLop.Location = new System.Drawing.Point(20, 192);
             this.btnXoaLop.Name = "btnXoaLop";
-            this.btnXoaLop.Size = new System.Drawing.Size(75, 23);
+            this.btnXoaLop.Size = new System.Drawing.Size(118, 32);
             this.btnXoaLop.TabIndex = 8;
             this.btnXoaLop.Text = "Xóa";
             this.btnXoaLop.UseVisualStyleBackColor = true;
@@ -438,9 +486,9 @@ namespace WindowsFormsApp1
             // 
             // btnReloadLop
             // 
-            this.btnReloadLop.Location = new System.Drawing.Point(170, 200);
+            this.btnReloadLop.Location = new System.Drawing.Point(148, 192);
             this.btnReloadLop.Name = "btnReloadLop";
-            this.btnReloadLop.Size = new System.Drawing.Size(75, 23);
+            this.btnReloadLop.Size = new System.Drawing.Size(118, 32);
             this.btnReloadLop.TabIndex = 9;
             this.btnReloadLop.Text = "Làm mới";
             this.btnReloadLop.UseVisualStyleBackColor = true;
@@ -448,14 +496,17 @@ namespace WindowsFormsApp1
             // 
             // dgvLop
             // 
+            this.dgvLop.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvLop.BackgroundColor = System.Drawing.Color.White;
             this.dgvLop.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLop.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.malopLopColumn,
             this.tenlopLopColumn});
-            this.dgvLop.Location = new System.Drawing.Point(398, 61);
+            this.dgvLop.Location = new System.Drawing.Point(328, 82);
             this.dgvLop.Name = "dgvLop";
-            this.dgvLop.Size = new System.Drawing.Size(735, 380);
+            this.dgvLop.Size = new System.Drawing.Size(748, 420);
             this.dgvLop.TabIndex = 10;
             this.dgvLop.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLop_CellClick);
             // 
@@ -475,12 +526,12 @@ namespace WindowsFormsApp1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(242)))), ((int)(((byte)(247)))));
             this.ClientSize = new System.Drawing.Size(1134, 558);
             this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "Quản lý sinh viên";
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tblsinhvienBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quanlysinhvienDataSet)).EndInit();
@@ -529,12 +580,12 @@ namespace WindowsFormsApp1
         private TextBox textBox2;
         private Label lbl_hoten;
         private Label lbl_ngaysinh;
-        private TextBox textBox3;
+        private DateTimePicker dtpNgaySinh;
         private Label lbl_gioitinh;
         private RadioButton chkNam;
         private RadioButton chkNu;
         private Label lbl_malop;
-        private TextBox textBox5;
+        private ComboBox cboLop;
         private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn tensinhvienDataGridViewTextBoxColumn;
@@ -557,5 +608,9 @@ namespace WindowsFormsApp1
         private DataGridView dgvLop;
         private DataGridViewTextBoxColumn malopLopColumn;
         private DataGridViewTextBoxColumn tenlopLopColumn;
+        private GroupBox grpThongTinSV;
+        private Label lblTimKiem;
+        private Label lblTimKiemLop;
+        private GroupBox grpLopHoc;
     }
 }

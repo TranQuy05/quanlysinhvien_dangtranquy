@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -36,7 +36,7 @@ namespace WindowsFormsApp1
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(50, 80);
+            this.label1.Location = new System.Drawing.Point(48, 92);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 16);
             this.label1.TabIndex = 6;
@@ -45,7 +45,7 @@ namespace WindowsFormsApp1
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(50, 120);
+            this.label2.Location = new System.Drawing.Point(48, 132);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 16);
             this.label2.TabIndex = 5;
@@ -53,25 +53,24 @@ namespace WindowsFormsApp1
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(140, 77);
+            this.txtUsername.Location = new System.Drawing.Point(140, 89);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(200, 22);
+            this.txtUsername.Size = new System.Drawing.Size(220, 25);
             this.txtUsername.TabIndex = 4;
-            this.txtUsername.Text = "d";
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(140, 117);
+            this.txtPassword.Location = new System.Drawing.Point(140, 129);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(200, 22);
+            this.txtPassword.Size = new System.Drawing.Size(220, 25);
             this.txtPassword.TabIndex = 3;
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(140, 160);
+            this.btnLogin.Location = new System.Drawing.Point(140, 176);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(90, 30);
+            this.btnLogin.Size = new System.Drawing.Size(105, 34);
             this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Đăng nhập";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -79,9 +78,9 @@ namespace WindowsFormsApp1
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(250, 160);
+            this.btnExit.Location = new System.Drawing.Point(255, 176);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(90, 30);
+            this.btnExit.Size = new System.Drawing.Size(105, 34);
             this.btnExit.TabIndex = 1;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -89,17 +88,17 @@ namespace WindowsFormsApp1
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.Blue;
-            this.label3.Location = new System.Drawing.Point(110, 25);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.label3.Location = new System.Drawing.Point(88, 32);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(162, 29);
+            this.label3.Size = new System.Drawing.Size(200, 30);
             this.label3.TabIndex = 0;
             this.label3.Text = "ĐĂNG NHẬP";
             // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(400, 230);
+            this.ClientSize = new System.Drawing.Size(420, 260);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnLogin);

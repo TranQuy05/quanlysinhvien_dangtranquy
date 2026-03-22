@@ -97,9 +97,11 @@ namespace WindowsFormsApp1
 		
 		private System.Nullable<System.DateTime> _ngaysinh;
 		
-		private System.Nullable<bool> _gioitinh;
+		private string _gioitinh;
 		
 		private System.Nullable<int> _malop;
+		
+		private EntityRef<tbl_lophoc> _tbl_lophoc;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -111,7 +113,7 @@ namespace WindowsFormsApp1
     partial void OntensinhvienChanged();
     partial void OnngaysinhChanging(System.Nullable<System.DateTime> value);
     partial void OnngaysinhChanged();
-    partial void OngioitinhChanging(System.Nullable<bool> value);
+    partial void OngioitinhChanging(string value);
     partial void OngioitinhChanged();
     partial void OnmalopChanging(System.Nullable<int> value);
     partial void OnmalopChanged();
@@ -119,6 +121,7 @@ namespace WindowsFormsApp1
 		
 		public tbl_sinhvien()
 		{
+			this._tbl_lophoc = default(EntityRef<tbl_lophoc>);
 			OnCreated();
 		}
 		
@@ -182,8 +185,8 @@ namespace WindowsFormsApp1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gioitinh", DbType="Bit")]
-		public System.Nullable<bool> gioitinh
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gioitinh", DbType="NVarChar(10)")]
+		public string gioitinh
 		{
 			get
 			{
@@ -213,11 +216,49 @@ namespace WindowsFormsApp1
 			{
 				if ((this._malop != value))
 				{
+					if (this._tbl_lophoc.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnmalopChanging(value);
 					this.SendPropertyChanging();
 					this._malop = value;
 					this.SendPropertyChanged("malop");
 					this.OnmalopChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_lophoc_tbl_sinhvien", Storage="_tbl_lophoc", ThisKey="malop", OtherKey="malop", IsForeignKey=true)]
+		public tbl_lophoc tbl_lophoc
+		{
+			get
+			{
+				return this._tbl_lophoc.Entity;
+			}
+			set
+			{
+				tbl_lophoc previousValue = this._tbl_lophoc.Entity;
+				if (((previousValue != value) 
+							|| (this._tbl_lophoc.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbl_lophoc.Entity = null;
+						previousValue.tbl_sinhviens.Remove(this);
+					}
+					this._tbl_lophoc.Entity = value;
+					if ((value != null))
+					{
+						value.tbl_sinhviens.Add(this);
+						this._malop = value.malop;
+					}
+					else
+					{
+						this._malop = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tbl_lophoc");
 				}
 			}
 		}
@@ -253,6 +294,8 @@ namespace WindowsFormsApp1
 		
 		private string _tenlop;
 		
+		private EntitySet<tbl_sinhvien> _tbl_sinhviens;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -265,6 +308,7 @@ namespace WindowsFormsApp1
 		
 		public tbl_lophoc()
 		{
+			this._tbl_sinhviens = new EntitySet<tbl_sinhvien>(new Action<tbl_sinhvien>(this.attach_tbl_sinhviens), new Action<tbl_sinhvien>(this.detach_tbl_sinhviens));
 			OnCreated();
 		}
 		
@@ -308,6 +352,19 @@ namespace WindowsFormsApp1
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_lophoc_tbl_sinhvien", Storage="_tbl_sinhviens", ThisKey="malop", OtherKey="malop")]
+		public EntitySet<tbl_sinhvien> tbl_sinhviens
+		{
+			get
+			{
+				return this._tbl_sinhviens;
+			}
+			set
+			{
+				this._tbl_sinhviens.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -326,6 +383,18 @@ namespace WindowsFormsApp1
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_tbl_sinhviens(tbl_sinhvien entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_lophoc = this;
+		}
+		
+		private void detach_tbl_sinhviens(tbl_sinhvien entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_lophoc = null;
 		}
 	}
 }
